@@ -40,16 +40,16 @@
 
 
 .box{
-  width: 10rem;
-  height: 10rem;
-  background: rgb(104, 161, 218);
-  
+
+  background: #444;
+border-radius: 3px;
   cursor: pointer;
-  border: 1px solid white;
+  border: 1px solid #444;
   display: flex;
   justify-content: center;
-
-
+  overflow: hidden;
+  width: 10rem;
+  height: 10rem;
 align-items: center;
 
 }
@@ -58,5 +58,13 @@ p{
   user-select: none;
   font-weight: 500;
   font-size: 4rem;
+
+}
+img{
+  object-fit: cover;
+ width: 90%;
+height: 90%;
+border-radius: 3px;
+
 
 }
