@@ -5,7 +5,7 @@ import Box from './Box';
 
 
 function App() {
-  const [value, setValue] = useState([1, 2, 3, 4, 5])
+  const [value, setValue] = useState(['https://source.unsplash.com/random/400x400/?creepy'])
   const [numberClicked, setNumberClicked] = useState([])
 
   const saveNumber = (e) => {
@@ -16,6 +16,27 @@ function App() {
   const isNumberClicked = (number) => {
     const alreadyClicked = numberClicked.find(elem => elem == number);
     if (alreadyClicked != undefined) console.log('PERDISTE');
+
+  }
+
+  useEffect(()=>{
+    isNextLevel()
+
+  },[numberClicked])
+ 
+  const isNextLevel = () =>{
+    const valueLength = value.length;
+    const numberClickedLength = numberClicked.length
+    console.log(valueLength, numberClickedLength, numberClicked)
+    if (valueLength == numberClickedLength) {
+      console.log('next level')
+      setNextLevel()
+    }
+  }
+
+  const setNextLevel = () => {
+    const addBox = [Number(value.slice(-1)) + 1,Number(value.slice(-1)) +2]
+    setValue([...value,...addBox])
   }
 
   const updateData = () => {
@@ -25,11 +46,9 @@ function App() {
 
   return (
     <div className="App App-header">
-      <Box val={value[0]} updateData={updateData} saveNumber={saveNumber} />
-      <Box val={value[1]} updateData={updateData} saveNumber={saveNumber} />
-      <Box val={value[2]} updateData={updateData} saveNumber={saveNumber} />
-      <Box val={value[3]} updateData={updateData} saveNumber={saveNumber} />
-      <Box val={value[4]} updateData={updateData} saveNumber={saveNumber} />
+      {value.map((elem)=>{
+      return <Box val={elem} updateData={updateData} saveNumber={saveNumber} />
+      })}
     </div>
   );
 }
