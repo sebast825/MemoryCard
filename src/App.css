@@ -17,11 +17,12 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  gap: 1rem;
 }
 
 .App-link {
@@ -35,4 +36,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.box{
+  width: 10rem;
+  height: 10rem;
+  background: rgb(104, 161, 218);
+  
+  cursor: pointer;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+
+
+align-items: center;
+
+}
+
+p{
+  user-select: none;
+  font-weight: 500;
+  font-size: 4rem;
+
 }
