@@ -49,7 +49,7 @@ function App() {
   const boxClicked = (e) => {
     updateData()
     let imgClicked = wasImageClicked(e);
-    if (imgClicked != undefined) { endGame(); return } else addImageClicked(e);
+    if (imgClicked != undefined) { endGame(false); return } else addImageClicked(e);
 
     let nextLevel = isNextLevel()
     nextLevel ? setNextLevel() : console.log('no next level');
@@ -64,8 +64,11 @@ function App() {
     setNumberClicked([...numberClicked, e])
   }
 
-  const endGame = () => {
-    console.log('END GAME')
+  const wasLastLevel = () => {
+    return level == Object.keys(manyBoxes).length -1
+  }
+  const endGame = (win) => {
+    console.log('END GAME', win)
     setlevel(1)
     setNumberClicked([])
   }
@@ -81,7 +84,9 @@ function App() {
   }
 
   const setNextLevel = () => {
- 
+    let lastLevel = wasLastLevel();
+    console.log(lastLevel)
+    if (lastLevel) return endGame(true)
     setlevel(level + 1)
     // setImg([...img,...[3,4]])
     setNumberClicked([])
@@ -98,7 +103,7 @@ function App() {
     <div className="App App-header">
 
       {img.map((elem) => {
-        return <Box val={elem}  boxClicked={boxClicked} />
+        return <Box val={elem} level={level} boxClicked={boxClicked} />
       })}
     </div>
   );
