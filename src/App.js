@@ -6,10 +6,9 @@ import Box from './Box';
 const clientId = 'BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ'
 
 function App() {
-  const [value, setValue] = useState([1, 2, 3, 4])
   const [numberClicked, setNumberClicked] = useState([])
-  const [lvl, setLvl] = useState(1)
-  const [img, setImg] = useState([1, 2])
+  const [level, setlevel] = useState(1)
+  const [img, setImg] = useState([])
   const manyBoxes = {
     1: 2,
     2: 4,
@@ -20,8 +19,8 @@ function App() {
   }
 
   const apiRequest = () => {
-    //  const endPoint = `https://api.unsplash.com/photos/?client_id=${clientId}&per_page=${manyBoxes[lvl]}&query=mountain&page=${img}`
-    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=forest&page=${lvl}&per_page=${manyBoxes[lvl]}`
+    //  const endPoint = `https://api.unsplash.com/photos/?client_id=${clientId}&per_page=${manyBoxes[level]}&query=mountain&page=${img}`
+    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=forest&page=${level}&per_page=${manyBoxes[level]}`
 
     // const endPoint = 'https://api.unsplash.com/search/photos/?client_id=BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ&query=mountains&per_page=10&page=2'
     fetch(endPoint)
@@ -34,19 +33,26 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(lvl,numberClicked)
-  }, [lvl,numberClicked])
+    console.log(level,numberClicked)
+
+  }, [level,numberClicked])
 
   useEffect(() => {
     console.log(img)
   }, [img])
 
+  useEffect(()=>{
+    apiRequest()
+    console.log(img)
+  },[level])
+
   const boxClicked = (e) => {
+    updateData()
     let imgClicked = wasImageClicked(e);
     if (imgClicked != undefined) { endGame(); return } else addImageClicked(e);
 
     let nextLevel = isNextLevel()
-    nextLevel ? setNextLevel() : console.log('no next lvl');
+    nextLevel ? setNextLevel() : console.log('no next level');
   }
 
   const wasImageClicked = (number) => {
@@ -60,7 +66,7 @@ function App() {
 
   const endGame = () => {
     console.log('END GAME')
-    setLvl(1)
+    setlevel(1)
     setNumberClicked([])
   }
 
@@ -68,7 +74,7 @@ function App() {
     const valueLength = img.length;
     // is +1 because the updated value reflect after, and if use useffect, will render 1 time before and will activate setNextLevel
     const numberClickedLength = numberClicked.length + 1
-    //  console.log(valueLength, numberClickedLength, numberClicked, 'lvl:', lvl)
+    //  console.log(valueLength, numberClickedLength, numberClicked, 'level:', level)
     console.log(numberClicked)
     return valueLength == numberClickedLength
 
@@ -76,8 +82,8 @@ function App() {
 
   const setNextLevel = () => {
  
-    setLvl(lvl + 1)
-    setImg([...img,...[3,4]])
+    setlevel(level + 1)
+    // setImg([...img,...[3,4]])
     setNumberClicked([])
 
   }
@@ -92,7 +98,7 @@ function App() {
     <div className="App App-header">
 
       {img.map((elem) => {
-        return <Box val={elem} updateData={updateData} boxClicked={boxClicked} />
+        return <Box val={elem}  boxClicked={boxClicked} />
       })}
     </div>
   );

@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react'
 
 function Box(props) {
 
-  const {val, updateData ,boxClicked} = props;
-  
+  const {val ,boxClicked} = props;
+  const [background, setBackground] = useState('white');
+
   const [newval, setNewVal] = useState(val)
   useEffect(() => {
     setNewVal(val)
@@ -15,10 +16,10 @@ function Box(props) {
 
 
   return (
-    <div  className='box' onClick={() => {updateData();boxClicked(val)}}>
+    <div  className='box' style={{ backgroundColor: background }} onClick={() => {boxClicked(val)}}>
       {/* <p>{newval}</p> */}
-      {/* <img src={val.urls.small}/> */}
-      <p>{val}</p>
+       <img src={val.urls.small}/> 
+      {/* <p>{val}</p> */}
     </div>
   )
 }
