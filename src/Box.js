@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 function Box(props) {
 
-  const {val, updateData ,saveNumber} = props;
+  const {val, updateData ,boxClicked} = props;
   
   const [newval, setNewVal] = useState(val)
   useEffect(() => {
@@ -15,9 +15,10 @@ function Box(props) {
 
 
   return (
-    <div  className='box' onClick={() => {updateData();saveNumber(val)}}>
+    <div  className='box' onClick={() => {updateData();boxClicked(val)}}>
       {/* <p>{newval}</p> */}
-      <img src={val.urls.small}/>
+      {/* <img src={val.urls.small}/> */}
+      <p>{val}</p>
     </div>
   )
 }
