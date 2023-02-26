@@ -47,7 +47,7 @@ function App() {
   },[level])
 
   const boxClicked = (e) => {
-    updateData()
+    imgSort()
     let imgClicked = wasImageClicked(e);
     if (imgClicked != undefined) { endGame(false); return } else addImageClicked(e);
 
@@ -93,7 +93,7 @@ function App() {
 
   }
 
-  const updateData = () => {
+  const imgSort = () => {
     //don't need to use setImg because useState allow re order but not modify element
     const newData = img.sort(() => Math.random() - 0.5)
     // setImg(img.map(elem => { return elem }))
