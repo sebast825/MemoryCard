@@ -65,7 +65,7 @@ function App() {
   }
 
   const wasLastLevel = () => {
-    return level == Object.keys(manyBoxes).length -1
+    return level == Object.keys(manyBoxes).length
   }
   const endGame = (win) => {
     console.log('END GAME', win)
@@ -88,6 +88,7 @@ function App() {
     console.log(lastLevel)
     if (lastLevel) return endGame(true)
     setlevel(level + 1)
+    console.log('sige aun')
     // setImg([...img,...[3,4]])
     setNumberClicked([])
 
