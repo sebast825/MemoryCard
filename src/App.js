@@ -14,14 +14,7 @@ function App() {
     3: [],
     4: []
   })
-  const manyBoxes = {
-    1: 2,
-    2: 4,
-    3: 8,
-    4: 10,
-    5: 12,
-    6: 18
-  }
+
 
   useEffect(()=>{
     console.log(img)
@@ -62,8 +55,8 @@ function App() {
 
   const boxClicked = (e) => {
     imgSort()
-    let imgClicked = wasImageClicked(e);
-    if (imgClicked != undefined) { endGame(false); return } else addImageClicked(e);
+    let imgClicked = wasImageClicked(e.id);
+    if (imgClicked != undefined) { endGame(false); return } else addImageClicked(e.id);
 
     let nextLevel = isNextLevel()
     nextLevel ? setNextLevel() : console.log('no next level');
@@ -79,7 +72,7 @@ function App() {
   }
 
   const wasLastLevel = () => {
-    return level == Object.keys(manyBoxes).length
+    return level == Object.keys(img).length
   }
   const endGame = (win) => {
     console.log('END GAME', win)

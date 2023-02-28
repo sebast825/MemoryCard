@@ -21,7 +21,7 @@ function Box(props) {
     <div  className='box' style={{ backgroundColor: background }} onClick={() => {boxClicked(val);}}>
       {/* <p>{newval}</p> */}
        <img src={val.urls.small}/> 
-      {/* <p>{val}</p> */}
+       <p>{val.id}</p> 
     </div>
   )
 }
