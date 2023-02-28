@@ -127,10 +127,15 @@ function Game(props) {
 
   return (
     <div className="App ">
+      <div className='header'>
+      <a href='https://presentacionsm.netlify.app/' target="_blank">Portfolio</a>
+
       <div className='showPoints'>
-      <p>points: {points}</p>
-      <p>max points: {maxPoints}</p>
+      <p>Points: {points}</p>
+      <p>Max Points: {maxPoints}</p>
       </div>
+      </div>
+     
   
 
 <div className='App-header'>
