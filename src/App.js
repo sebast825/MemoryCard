@@ -5,8 +5,8 @@ import Category from './Category'
 function App() {
   return (
     <div>
-      <Category></Category>
-      {/* <Game/> */}
+      {/* <Category></Category> */}
+      <Game/>
     </div>
   )
 }
