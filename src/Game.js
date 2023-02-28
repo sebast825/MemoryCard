@@ -5,7 +5,8 @@ import Box from './Box';
 
 const clientId = 'BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ'
 
-function Game() {
+function Game(props) {
+  const {category,setPreviousGame,setShowTab} = props
   const [numberClicked, setNumberClicked] = useState([])
   const [level, setlevel] = useState(1)
   const [points,setPoints] = useState(0)
@@ -24,7 +25,7 @@ function Game() {
 
   const apiRequest = () => {
     //  const endPoint = `https://api.unsplash.com/photos/?client_id=${clientId}&per_page=${manyBoxes[level]}&query=mountain&page=${img}`
-    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=forest&page=${level}&per_page=30`
+    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=${category}&page=${level}&per_page=30`
 
     // const endPoint = 'https://api.unsplash.com/search/photos/?client_id=BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ&query=mountains&per_page=10&page=2'
     fetch(endPoint)
@@ -93,6 +94,8 @@ function Game() {
     setlevel(1)
     setNumberClicked([])
     setPoints(0)
+    setPreviousGame([false,points])
+    setShowTab('endGame')
   }
 
   const isNextLevel = () => {
