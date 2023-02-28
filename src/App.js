@@ -8,7 +8,12 @@ const clientId = 'BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ'
 function App() {
   const [numberClicked, setNumberClicked] = useState([])
   const [level, setlevel] = useState(1)
-  const [img, setImg] = useState([])
+  const [img, setImg] = useState({
+    1: [],
+    2: [],
+    3: [],
+    4: []
+  })
   const manyBoxes = {
     1: 2,
     2: 4,
@@ -18,16 +23,25 @@ function App() {
     6: 18
   }
 
+  useEffect(()=>{
+    console.log(img)
+  },[img])
+
   const apiRequest = () => {
     //  const endPoint = `https://api.unsplash.com/photos/?client_id=${clientId}&per_page=${manyBoxes[level]}&query=mountain&page=${img}`
-    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=forest&page=${level}&per_page=${manyBoxes[level]}`
+    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=forest&page=${level}&per_page=30`
 
     // const endPoint = 'https://api.unsplash.com/search/photos/?client_id=BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ&query=mountains&per_page=10&page=2'
     fetch(endPoint)
       .then((response) => response.json())
       .then((jsonData) => {
         console.log(jsonData)
-        setImg([...jsonData.results])
+        setImg({
+          1: jsonData.results.slice(0,4),
+          2: jsonData.results.slice(4,10),
+          3: jsonData.results.slice(10,18),
+          4: jsonData.results.slice(18)
+        })
       })
       .catch((eror) => console.log('error: ', eror))
   }
@@ -74,7 +88,7 @@ function App() {
   }
 
   const isNextLevel = () => {
-    const valueLength = img.length;
+    const valueLength = img[level].length;
     // is +1 because the updated value reflect after, and if use useffect, will render 1 time before and will activate setNextLevel
     const numberClickedLength = numberClicked.length + 1
     //  console.log(valueLength, numberClickedLength, numberClicked, 'level:', level)
@@ -96,16 +110,16 @@ function App() {
 
   const imgSort = () => {
     //don't need to use setImg because useState allow re order but not modify element
-    const newData = img.sort(() => Math.random() - 0.5)
+    const newData = img[level].sort(() => Math.random() - 0.5)
     // setImg(img.map(elem => { return elem }))
   }
 
   return (
     <div className="App App-header">
 
-      {img.map((elem) => {
+       {img[level].map((elem) => {
         return <Box val={elem} level={level} boxClicked={boxClicked} />
-      })}
+      })} 
     </div>
   );
 }
