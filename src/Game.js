@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.scss';
 import { useEffect, useState } from 'react';
 import Box from './Box';
+import Header from './Header';
 
 const clientId = 'BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ'
 
@@ -127,16 +128,9 @@ function Game(props) {
 
   return (
     <div className="App ">
-      <div className='header'>
-      <a href='https://presentacionsm.netlify.app/' target="_blank">Portfolio</a>
-
-      <div className='showPoints'>
-      <p>Points: {points}</p>
-      <p>Max Points: {maxPoints}</p>
-      </div>
-      </div>
-     
   
+     
+  <Header points={points} maxPoints={maxPoints}/>
 
 <div className='App-header'>
 {img[level].map((elem) => {
