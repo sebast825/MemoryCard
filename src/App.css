@@ -68,5 +68,9 @@ img{
 height: 70%;
 border-radius: 3px;
 
+}
 
+.showPoints{
+  display: flex;
+  justify-content: space-around;
 }

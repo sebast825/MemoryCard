@@ -8,6 +8,8 @@ const clientId = 'BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ'
 function App() {
   const [numberClicked, setNumberClicked] = useState([])
   const [level, setlevel] = useState(1)
+  const [points,setPoints] = useState(0)
+  const [maxPoints,setMaxPoints] = useState(0)
   const [img, setImg] = useState({
     1: [],
     2: [],
@@ -38,7 +40,9 @@ function App() {
       })
       .catch((eror) => console.log('error: ', eror))
   }
-
+  useEffect(()=>{
+    isMaxPoint()
+  },[points])
   useEffect(() => {
     console.log(level,numberClicked)
 
@@ -69,8 +73,18 @@ function App() {
 
   const addImageClicked = (e) => {
     setNumberClicked([...numberClicked, e])
+    incrementPoint()
   }
 
+  const incrementPoint= () => {
+    setPoints(points + 1)
+   
+  }
+  const isMaxPoint = () => {
+    if (points > maxPoints){
+      setMaxPoints(points)
+    }
+  }
   const wasLastLevel = () => {
     return level == Object.keys(img).length
   }
@@ -78,6 +92,7 @@ function App() {
     console.log('END GAME', win)
     setlevel(1)
     setNumberClicked([])
+    setPoints(0)
   }
 
   const isNextLevel = () => {
@@ -108,11 +123,19 @@ function App() {
   }
 
   return (
-    <div className="App App-header">
+    <div className="App ">
+      <div className='showPoints'>
+      <p>points: {points}</p>
+      <p>max points: {maxPoints}</p>
+      </div>
+  
 
-       {img[level].map((elem) => {
+<div className='App-header'>
+{img[level].map((elem) => {
         return <Box val={elem} level={level} boxClicked={boxClicked} />
       })} 
+</div>
+      
     </div>
   );
 }
