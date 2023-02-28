@@ -15,8 +15,9 @@ function Endgame(props) {
 
          </div>
          <div className='buttonContainer'>
-            <button onClick={() => { setShowTab('category') }}>Menu</button>
-            <button onClick={() => { setShowTab('game') }}>Play Again</button>
+         <a className='button button--light' onClick={() => { setShowTab('game') }}>Play Again</a>
+
+            <a className='button button--dark' onClick={() => { setShowTab('category') }}>Menu</a>
          </div>
 
 
