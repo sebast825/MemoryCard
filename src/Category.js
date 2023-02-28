@@ -14,25 +14,37 @@ function Category(props) {
   };
 
   return (
-    <div className='categoryContainer'>
-      {categories.map((category) => {
+    <div className='menu'>
+      <div className='menu__tittle'>
+        <h1>Memory Card</h1>
+        <h4>Select Category</h4>
+      </div>
 
-        //use the imported images
-        const bgPhoto = {
-          backgroundImage: backgroundImageStyles[category]
-        }
-        return (
-          <div
-            className='category'
-            onClick={() => {
-              setCategory(category);
-              setShowTab('game');
-            }}
-            style={bgPhoto}>
-            <h2>{category}</h2>
-          </div>
-        );
-      })}
+
+      <div className='categoryContainer'>
+        {categories.map((category) => {
+
+          //use the imported images
+          const bgPhoto = {
+            backgroundImage: backgroundImageStyles[category]
+          }
+          return (
+            <div
+              className='category'
+              onClick={() => {
+                setCategory(category);
+                setShowTab('game');
+              }}
+              >
+                    
+                <div className='category__background'style={bgPhoto}>
+             
+                </div>
+                <h2>{category}</h2>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
