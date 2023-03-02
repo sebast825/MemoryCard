@@ -2,17 +2,23 @@
    display: flex;
 justify-content: space-between;
 align-items: center;
-padding: 0 2rem;
+padding: 0 3rem;
 background-color: #000;
 color: #fff;
 position: fixed;
 width: 100vw;
+@media only screen and (max-width: 600px) {
+padding: 0 1rem;
+}
 a{
    text-decoration: none;
    color: #fff;
 
    font-weight: 500;
    font-size: 1.5rem;
+}
+h2{
+   cursor: pointer;
 }
 }
 

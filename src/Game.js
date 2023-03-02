@@ -80,13 +80,21 @@ function Game(props) {
   }
   const endGame = (win) => {
     console.log('END GAME', win)
-    setlevel(1)
-    setNumberClicked([])
-    setPoints(0)
+
     setPreviousGame([false, points])
     setShowTab('endGame')
   }
 
+  const resetStats = ()=>{
+    setlevel(1)
+    setNumberClicked([])
+    setPoints(0)
+  }
+  const goMenu = () => {
+    resetStats()
+    setShowTab('category')
+
+  }
   const isNextLevel = () => {
     const valueLength = img[level].length;
     // is +1 because the updated value reflect after, and if use useffect, will render 1 time before and will activate setNextLevel
@@ -116,7 +124,7 @@ function Game(props) {
 
   return (
     <div className="App ">
-      <Header points={points} />
+      <Header points={points} goMenu={goMenu} />
 
       <div className='App-header'>
         
