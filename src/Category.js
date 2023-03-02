@@ -11,6 +11,7 @@ function Category(props) {
   const backgroundImageStyles = {
     scary: `url(${scary})`,
     graffity: `url(${graffity})`
+
   };
 
   return (

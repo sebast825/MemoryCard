@@ -1,6 +1,6 @@
 .menu{
    background-color: #282c34;
-   height: 100vh;
+   min-height: 100vh;
    display: flex;
 color: #fff;
    flex-direction: column;
@@ -15,7 +15,10 @@ color: #fff;
    display: flex;
    justify-content: center;
    align-items: center;
-
+   @media only screen and (max-width : 900px){
+      width: 15rem;
+   height: 15rem;
+   }
 
    &__background {
       background-position: center;
@@ -55,6 +58,7 @@ color: #fff;
    display: flex;
    justify-content: center;
    gap: 2rem;
+   flex-wrap: wrap;
 }
 
 .menu__tittle {
