@@ -11,6 +11,7 @@ function Game(props) {
   const [numberClicked, setNumberClicked] = useState([])
   const [level, setlevel] = useState(1)
   const [points, setPoints] = useState(0)
+  const [seFinish, setSeFinish] = useState(null)
   // const [maxPoints,setMaxPoints] = useState(0)
   const [img, setImg] = useState({
     1: [],
@@ -30,8 +31,8 @@ function Game(props) {
       .then((jsonData) => {
         console.log(jsonData)
         setImg({
-          1: jsonData.results.slice(0, 12),
-          2: jsonData.results.slice(4, 10),
+          1: jsonData.results.slice(0, 2),
+          2: jsonData.results.slice(4, 6),
           3: jsonData.results.slice(10, 18),
           4: jsonData.results.slice(18)
         })
@@ -43,13 +44,31 @@ function Game(props) {
   useEffect(() => {
     //if select play again doesn't call api again
     if (img[1] == '') apiRequest()
-    
+
   }, [])
+
+  useEffect(() => {
+    if (seFinish) {
+      console.log('sefinish')
+      setPreviousGame([true, points])
+      setShowTab('endGame')
+      resetStats()
+
+    }
+    else if (seFinish === false) {
+      console.log('sigue', seFinish)
+      setPreviousGame([false, points])
+      resetStats()
+      setShowTab('endGame')
+
+
+    }
+  }, [seFinish])
 
   const boxClicked = (e) => {
     imgSort()
     let imgClicked = wasImageClicked(e.id);
-    if (imgClicked != undefined) { endGame(false); return } else addImageClicked(e.id);
+    if (imgClicked != undefined) { setSeFinish(false); return } else addImageClicked(e.id);
 
     let nextLevel = isNextLevel()
     nextLevel ? setNextLevel() : console.log('no next level');
@@ -78,14 +97,9 @@ function Game(props) {
   const wasLastLevel = () => {
     return level == Object.keys(img).length
   }
-  const endGame = (win) => {
-    console.log('END GAME', win)
 
-    setPreviousGame([false, points])
-    setShowTab('endGame')
-  }
 
-  const resetStats = ()=>{
+  const resetStats = () => {
     setlevel(1)
     setNumberClicked([])
     setPoints(0)
@@ -99,8 +113,6 @@ function Game(props) {
     const valueLength = img[level].length;
     // is +1 because the updated value reflect after, and if use useffect, will render 1 time before and will activate setNextLevel
     const numberClickedLength = numberClicked.length + 1
-    //  console.log(valueLength, numberClickedLength, numberClicked, 'level:', level)
-    console.log(numberClicked)
     return valueLength == numberClickedLength
 
   }
@@ -108,10 +120,8 @@ function Game(props) {
   const setNextLevel = () => {
     let lastLevel = wasLastLevel();
     console.log(lastLevel)
-    if (lastLevel) return endGame(true)
+    if (lastLevel) return setSeFinish(true)
     setlevel(level + 1)
-    console.log('sige aun')
-    // setImg([...img,...[3,4]])
     setNumberClicked([])
 
   }
@@ -119,7 +129,6 @@ function Game(props) {
   const imgSort = () => {
     //don't need to use setImg because useState allow re order but not modify element
     const newData = img[level].sort(() => Math.random() - 0.5)
-    // setImg(img.map(elem => { return elem }))
   }
 
   return (
@@ -127,7 +136,7 @@ function Game(props) {
       <Header points={points} goMenu={goMenu} />
 
       <div className='App-header'>
-        
+
         {img[level].map((elem) => {
           return <Box val={elem} level={level} key={elem.id} boxClicked={boxClicked} />
         })}
