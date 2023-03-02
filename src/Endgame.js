@@ -4,8 +4,8 @@ function Endgame(props) {
    const { previousGame, setShowTab } = props
    const [win, points] = previousGame
    useEffect(() => {
-      console.log(previousGame)
-      console.log(win, points)
+      // console.log(previousGame)
+      // console.log(win, points)
    }, [])
    return (
       <div className='endGame'>

@@ -7,10 +7,10 @@ import Header from './Header';
 const clientId = 'BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ'
 
 function Game(props) {
-  const {category,setPreviousGame,setShowTab} = props
+  const { category, setPreviousGame, setShowTab } = props
   const [numberClicked, setNumberClicked] = useState([])
   const [level, setlevel] = useState(1)
-  const [points,setPoints] = useState(0)
+  const [points, setPoints] = useState(0)
   // const [maxPoints,setMaxPoints] = useState(0)
   const [img, setImg] = useState({
     1: [],
@@ -20,13 +20,9 @@ function Game(props) {
   })
 
 
-  useEffect(()=>{
-    console.log(img)
-  },[img])
-
   const apiRequest = () => {
     //  const endPoint = `https://api.unsplash.com/photos/?client_id=${clientId}&per_page=${manyBoxes[level]}&query=mountain&page=${img}`
-    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=${category}&page=${level}&per_page=30`
+    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=${category}&per_page=30`
 
     // const endPoint = 'https://api.unsplash.com/search/photos/?client_id=BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ&query=mountains&per_page=10&page=2'
     fetch(endPoint)
@@ -34,28 +30,21 @@ function Game(props) {
       .then((jsonData) => {
         console.log(jsonData)
         setImg({
-          1: jsonData.results.slice(0,4),
-          2: jsonData.results.slice(4,10),
-          3: jsonData.results.slice(10,18),
+          1: jsonData.results.slice(0, 12),
+          2: jsonData.results.slice(4, 10),
+          3: jsonData.results.slice(10, 18),
           4: jsonData.results.slice(18)
         })
       })
       .catch((eror) => console.log('error: ', eror))
   }
 
-  useEffect(() => {
-    console.log(level,numberClicked)
-
-  }, [level,numberClicked])
 
   useEffect(() => {
-    console.log(img)
-  }, [img])
-
-  useEffect(()=>{
-    apiRequest()
-    console.log(img)
-  },[level])
+    //if select play again doesn't call api again
+    if (img[1] == '') apiRequest()
+    
+  }, [])
 
   const boxClicked = (e) => {
     imgSort()
@@ -73,12 +62,11 @@ function Game(props) {
 
   const addImageClicked = (e) => {
     setNumberClicked([...numberClicked, e])
-     incrementPoint()
+    incrementPoint()
   }
 
-  const incrementPoint= () => {
+  const incrementPoint = () => {
     setPoints(points + 1)
-   
   }
 
   /*
@@ -95,7 +83,7 @@ function Game(props) {
     setlevel(1)
     setNumberClicked([])
     setPoints(0)
-    setPreviousGame([false,points])
+    setPreviousGame([false, points])
     setShowTab('endGame')
   }
 
@@ -128,16 +116,15 @@ function Game(props) {
 
   return (
     <div className="App ">
-  
-     
-  <Header points={points} />
+      <Header points={points} />
 
-<div className='App-header'>
-{img[level].map((elem) => {
-        return <Box val={elem} level={level} boxClicked={boxClicked} />
-      })} 
-</div>
-      
+      <div className='App-header'>
+        
+        {img[level].map((elem) => {
+          return <Box val={elem} level={level} key={elem.id} boxClicked={boxClicked} />
+        })}
+      </div>
+
     </div>
   );
 }
@@ -146,6 +133,6 @@ export default Game;
 
 
 
-//si esta sin nada actualiza la 1ra vez que hay un cambio, y si hay 
+//si esta sin nada actualiza la 1ra vez que hay un cambio, y si hay
 //si tiene corchete vacio solo actualiza cuando renderiza
 //si le pasas parametro actualiza con parametro

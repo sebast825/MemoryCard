@@ -30,6 +30,7 @@ function Category(props) {
           }
           return (
             <div
+            key={category}
               className='category'
               onClick={() => {
                 setCategory(category);
