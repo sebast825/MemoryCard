@@ -5,7 +5,7 @@ import Endgame from './Endgame'
 function App() {
 
    const [category, setCategory] = useState()
-   const [showTab, setShowTab] = useState('category')
+   const [showTab, setShowTab] = useState('endGame')
    const [endView, setEndView] = useState(false)
    const [previousGame,setPreviousGame] = useState([false,1])
    useEffect(()=>{

@@ -8,9 +8,13 @@
    flex-direction: column;
    text-align: center;
    &__text{
-h2{
+h1{
    text-transform: uppercase;
+   font-size: $font-big;
 
+}
+h2{
+   font-size: $font-med;
 }
    }
 }

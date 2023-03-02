@@ -10,8 +10,8 @@ function Endgame(props) {
    return (
       <div className='endGame'>
          <div className='endGame__text'>
-            {win ? <h2>You Win!</h2> : <h2>You Lose!</h2>}
-            <h4>Points: {points}</h4>
+            {win ? <h1>You Win!</h1> : <h1>You Lose!</h1>}
+            <h2>Points: {points}</h2>
 
          </div>
          <div className='buttonContainer'>
