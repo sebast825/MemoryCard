@@ -6,12 +6,20 @@
   border: 1px solid #444;
   display: flex;
   justify-content: center;
+  
   overflow: hidden;
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 20rem;
   
   border-radius: 3px;
   overflow: hidden;
+  @media only screen and (max-width: 900px){
+    width: 10rem;
+  }
+@media only screen and (max-width: 600px){
+  width: 7rem;
+  height: 10rem;
+}
 
   p {
     user-select: none;
