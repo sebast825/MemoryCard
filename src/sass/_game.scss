@@ -10,8 +10,10 @@
    color: white;
    gap: 1rem;
    flex-wrap: wrap;
-   @media only screen and (max-width : 600px){
 
+
+   @media only screen and (max-width : 600px){
+      
        gap: .5rem;
 
    } 
