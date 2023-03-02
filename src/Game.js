@@ -31,8 +31,8 @@ function Game(props) {
       .then((jsonData) => {
         console.log(jsonData)
         setImg({
-          1: jsonData.results.slice(0, 2),
-          2: jsonData.results.slice(4, 6),
+          1: jsonData.results.slice(0, 4),
+          2: jsonData.results.slice(4, 10),
           3: jsonData.results.slice(10, 18),
           4: jsonData.results.slice(18)
         })
