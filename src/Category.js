@@ -1,6 +1,6 @@
 import React from 'react';
-// import graffity from './photos/graffity.jpg';
-// import scary from './photos/scary.jpg';
+import graffity from './photos/graffity.jpg';
+import scary from './photos/scary.jpg';
 
 function Category(props) {
   const { setCategory, setShowTab } = props;
