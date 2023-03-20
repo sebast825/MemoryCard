@@ -1,6 +1,6 @@
 import React from 'react';
-import graffity from './photos/graffity.jpg';
-import scary from './photos/scary.jpg';
+// import graffity from './photos/graffity.jpg';
+// import scary from './photos/scary.jpg';
 
 function Category(props) {
   const { setCategory, setShowTab } = props;
@@ -9,8 +9,8 @@ function Category(props) {
 
   //use the imported images
   const backgroundImageStyles = {
-    scary: `url(${scary})`,
-    graffity: `url(${graffity})`
+    scary: `url(https://sebast825.github.io/MemoryCard/static/media/scary.8a90f4857dd549d378ad.jpg)`,
+    graffity: `url(https://sebast825.github.io/MemoryCard/static/media/graffity.fab23d15fdd79c353ff3.jpg)`
 
   };
 
