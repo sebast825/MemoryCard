@@ -18,7 +18,9 @@ function Category(props) {
     <div className='menu'>
       <div className='menu__tittle'>
         <h1>Memory Card</h1>
+        <p>Click only one time each photo</p>
         <h4>Select Category</h4>
+
       </div>
 
 
@@ -46,6 +48,9 @@ function Category(props) {
             </div>
           );
         })}
+      </div>
+      <div className='Instructions'>
+        
       </div>
     </div>
   );

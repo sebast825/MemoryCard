@@ -32,9 +32,9 @@ function Game(props) {
       .then((jsonData) => {
         console.log(jsonData)
         setImg({
-          1: jsonData.results.slice(0, 4),
+          1: jsonData.results.slice(0, 12),
           2: jsonData.results.slice(4, 10),
-          3: jsonData.results.slice(10, 18),
+          3: jsonData.results.slice(10, 19),
           4: jsonData.results.slice(18)
         })
       })
@@ -49,6 +49,7 @@ function Game(props) {
   }, [])
 
   useEffect(() => {
+    
     if (seFinish) {
       console.log('sefinish')
       setPreviousGame([true, points])

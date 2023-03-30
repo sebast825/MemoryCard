@@ -4,10 +4,13 @@
   color: #fff;
   font-family: 'Permanent Marker', cursive;
 font-weight: 100;
+position: relative;
 }
 .App {
    text-align: center;
- }
+   height: 100vh;
+  overflow: hidden;
+}
  
 
 $font-big:3rem;

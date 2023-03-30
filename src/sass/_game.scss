@@ -1,6 +1,7 @@
 .App-header {
    background-color: #282c34;
-   min-height: 100vh;
+  //  min-height: 100vh;
+   height: calc(100% - 70px);
    display: flex;
    flex-direction: row;
    align-items: center;
@@ -10,7 +11,7 @@
    color: white;
    gap: 1rem;
    flex-wrap: wrap;
-
+  
 
    @media only screen and (max-width : 600px){
       
