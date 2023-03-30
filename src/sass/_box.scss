@@ -14,15 +14,14 @@
   border-radius: 3px;
   overflow: hidden;
 
-  @media only screen and (max-width: 900px) {
-    width: 10rem;
-    height: 15rem;
-  }
+ 
 
-  @media only screen and (max-width: 600px) {
-    width: 7rem;
-    height: 10rem;
+  @media only screen and (max-width: 900px) {
+    width: 30%;
+    height: 22%;
   }
+  width: 15%;
+  height: 40%;
   &:hover img {
     transform: scale(1.2);
     opacity: .9;
