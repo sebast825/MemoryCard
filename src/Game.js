@@ -33,8 +33,8 @@ function Game(props) {
         console.log(jsonData)
         setImg({
           1: jsonData.results.slice(0, 3),
-          2: jsonData.results.slice(4, 10),
-          3: jsonData.results.slice(10, 19),
+          2: jsonData.results.slice(3, 9),
+          3: jsonData.results.slice(9, 18),
           4: jsonData.results.slice(18)
         })
       })
@@ -47,9 +47,13 @@ function Game(props) {
     if (img[1] == '') apiRequest()
 
   }, [])
-
   useEffect(() => {
-    
+    changeLayout();
+
+
+  }, [level])
+  useEffect(() => {
+
     if (seFinish) {
       console.log('sefinish')
       setPreviousGame([true, points])
@@ -74,6 +78,41 @@ function Game(props) {
 
     let nextLevel = isNextLevel()
     nextLevel ? setNextLevel() : console.log('no next level');
+/* pasa los niveles con un solo click */
+ /*   if (nextLevel || !nextLevel) {
+      setNextLevel();
+    } else {
+      console.log('no next level')
+    };
+*/
+  }
+
+  const changeLayout = () => {
+    let containerImg = document.querySelector('.App-header');
+    var childCount = containerImg.children.length;
+
+    containerImg.classList.remove('ninePhotos');
+    containerImg.classList.remove('treePhotos');
+    containerImg.classList.remove('sixPhotos');
+    containerImg.classList.remove('tewelvePhotos');
+
+    if (childCount <= 3) {
+      containerImg.classList.add('treePhotos');
+    } else if (childCount > 3 && childCount <= 6) {
+      containerImg.classList.add('sixPhotos');
+
+    }
+    else if (childCount > 6 && childCount <= 9) {
+      containerImg.classList.add('ninePhotos');
+
+    }
+    else if (childCount > 9) {
+      containerImg.classList.add('tewelvePhotos');
+
+    }
+    else {
+      console.log('error')
+    }
   }
 
   const wasImageClicked = (number) => {
@@ -137,7 +176,7 @@ function Game(props) {
     <div className="App ">
       <Header points={points} goMenu={goMenu} />
 
-      <div className='App-header'>
+      <div className='App-header treePhotos'>
 
         {img[level].map((elem) => {
           return <Box val={elem} level={level} key={elem.id} boxClicked={boxClicked} />

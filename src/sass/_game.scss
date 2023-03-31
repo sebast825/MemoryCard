@@ -1,21 +1,104 @@
 .App-header {
-   background-color: #282c34;
+  background-color: #282c34;
   //  min-height: 100vh;
-   height: calc(100% - 70px);
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   align-content: center;
-   justify-content: center;
-   font-size: calc(10px + 2vmin);
-   color: white;
-   gap: 1rem;
-   flex-wrap: wrap;
-  
+  height: calc(100% - 70px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  gap: 1rem;
+  flex-wrap: wrap;
 
-   @media only screen and (max-width : 600px){
-      
-       gap: .5rem;
 
-   } 
- }
+  @media only screen and (max-width : 600px) {
+
+    gap: .5rem;
+
+  }
+}
+
+.treePhotos {
+  // flex-direction: column!important;
+
+
+  & div {
+    width: 20%;
+    height: 40%;
+
+    @media only screen and (max-width: 900px) {
+      width: 30%;
+      height: 40%;
+
+    }
+
+    @media only screen and (max-width: 600px) {
+      width: 70%;
+      height: 22%;
+
+    }
+
+  }
+}
+
+
+.sixPhotos {
+  @media only screen and (min-width: 1200px) {
+    padding: 7rem 15rem;
+  }
+
+  & div {
+    width: 30%;
+    height: 55%;
+
+    @media only screen and (max-width: 1200px) {
+      width: 40%;
+      height: 30%;
+    }
+
+    @media only screen and (max-width: 600px) {
+      width: 40%;
+      height: 30%;
+    }
+  }
+
+}
+
+
+.ninePhotos {
+  @media only screen and (min-width: 1200px) {
+    padding: 7rem 15rem;
+  }
+
+  & div {
+    width: 30%;
+    height: 40%;
+
+    @media only screen and (max-width: 1200px) {
+      height: 25%;
+
+    }
+
+    @media only screen and (max-width: 900px) {
+      width: 30%;
+
+    }
+
+  }
+
+}
+
+.tewelvePhotos {
+  & div {
+    width: 20%;
+    height: 30%;
+
+    @media only screen and (max-width: 1200px) {
+      width: 30%;
+      height: 20%;
+    }
+  }
+
+}

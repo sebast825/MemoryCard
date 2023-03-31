@@ -8,23 +8,20 @@
   justify-content: center;
 
   overflow: hidden;
-  width: 15rem;
-  height: 20rem;
+  width: 25%;
+  height: 20%;  
 
   border-radius: 3px;
   overflow: hidden;
 
  
 
-  @media only screen and (max-width: 900px) {
-    width: 30%;
-    height: 22%;
-  }
-  width: 15%;
-  height: 40%;
+
+  
   &:hover img {
     transform: scale(1.2);
     opacity: .9;
+    // object-fit: cover;
   }
   p {
     user-select: none;
