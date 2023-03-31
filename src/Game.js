@@ -32,7 +32,7 @@ function Game(props) {
       .then((jsonData) => {
         console.log(jsonData)
         setImg({
-          1: jsonData.results.slice(0, 12),
+          1: jsonData.results.slice(0, 3),
           2: jsonData.results.slice(3, 9),
           3: jsonData.results.slice(9, 18),
           4: jsonData.results.slice(18)
@@ -86,6 +86,8 @@ function Game(props) {
     };
 */
   }
+
+  
 
   const changeLayout = () => {
     let containerImg = document.querySelector('.App-header');
@@ -169,7 +171,7 @@ function Game(props) {
 
   const imgSort = () => {
     //don't need to use setImg because useState allow re order but not modify element
-    const newData = img[level].sort(() => Math.random() - 0.5)
+    const newData = img[level].sort(() => Math.random() - 1)
   }
 
   return (
