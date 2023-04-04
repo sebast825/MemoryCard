@@ -181,7 +181,7 @@ function Game(props) {
       <div className='App-header treePhotos'>
 
         {img[level].map((elem) => {
-          return <Box val={elem} level={level} key={elem.id} boxClicked={boxClicked} />
+          return <Box val={elem} level={level}  key={+new Date() + elem.id} boxClicked={boxClicked} />
         })}
       </div>
 
