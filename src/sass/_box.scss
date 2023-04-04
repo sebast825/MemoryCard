@@ -14,7 +14,7 @@
   border-radius: 3px;
   overflow: hidden;
 
- animation: atr .5s ease;
+ animation: atr .5s ease-out;
  animation-fill-mode: forwards;
 
   
@@ -45,8 +45,10 @@
 @keyframes atr{
   from{
     transform: scale(.7);
+     opacity: 0;
   }
   to{
     transform: scale(1);
+    opacity: 1;
   }
 }
