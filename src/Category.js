@@ -14,11 +14,13 @@ function Category(props) {
 
   };
 
+  function instructionPopUp(){
+alert("Once the category is selected, click on each photo to pass the level.\nBe careful not to click the same photo twice!");
+  }
   return (
     <div className='menu'>
       <div className='menu__tittle'>
         <h1>Memory Card</h1>
-        <p>Click only one time each photo</p>
         <h4>Select Category</h4>
 
       </div>
@@ -49,8 +51,8 @@ function Category(props) {
           );
         })}
       </div>
-      <div className='Instructions'>
-        
+      <div className='instructions'>
+        <h2 onClick={()=>{instructionPopUp()}}>Instructions</h2>
       </div>
     </div>
   );

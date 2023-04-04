@@ -4,6 +4,13 @@
    display: flex;
 color: #fff;
    flex-direction: column;
+   justify-content: center;
+   @media only screen and (min-width : 600px){
+      gap: 2rem;
+
+   }
+    
+    
 }
 .category {
    width: 20rem;
@@ -63,9 +70,19 @@ color: #fff;
 
 .menu__tittle {
    text-align: center;
-   padding: 2rem;
+   // padding: 2rem;
 
    h1 {
       font-size: $font-big;
    }
+}
+
+.instructions{
+   text-align: center;
+  h2{
+   text-decoration: underline;
+   &:hover{
+      cursor: pointer;
+   }
+  }
 }
