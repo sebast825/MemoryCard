@@ -1,6 +1,6 @@
 import React from 'react';
-// import graffity from './photos/graffity.jpg';
-// import scary from './photos/scary.jpg';
+import graffity from './photos/graffity.jpg';
+import scary from './photos/scary.jpg';
 
 function Category(props) {
   const { setCategory, setShowTab } = props;
@@ -9,8 +9,8 @@ function Category(props) {
 
   //use the imported images
   const backgroundImageStyles = {
-    scary: "url(https://sebast825.github.io/MemoryCard/static/media/scary.8a90f4857dd549d378ad.jpg)",
-    graffity: `url(https://sebast825.github.io/MemoryCard/static/media/graffity.fab23d15fdd79c353ff3.jpg)`
+    scary: graffity,
+    art: scary
 
   };
 
@@ -33,6 +33,11 @@ alert("Once the category is selected, click on each photo to pass the level.\nBe
           const bgPhoto = {
             backgroundImage: backgroundImageStyles[category]
           }
+          /*
+          add to category bg to add a bg photo acording to category
+                        style={bgPhoto}
+
+          */
           return (
             <div
             key={category}
@@ -42,8 +47,9 @@ alert("Once the category is selected, click on each photo to pass the level.\nBe
                 setShowTab('game');
               }}
               >
-                    
-                <div className='category__background'style={bgPhoto}>
+              
+
+                <div className='category__background' >
              
                 </div>
                 <h2>{category}</h2>
