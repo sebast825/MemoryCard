@@ -5,7 +5,7 @@ import scary from './photos/scary.jpg';
 function Category(props) {
   const { setCategory, setShowTab } = props;
 
-  const categories = ['scary', 'art','animals'];
+  const categories = ['scary', 'art', 'animals'];
 
   //use the imported images
   const backgroundImageStyles = {
@@ -14,8 +14,8 @@ function Category(props) {
 
   };
 
-  function instructionPopUp(){
-alert("Once the category is selected, click on each photo to pass the level.\nBe careful not to click the same photo twice!");
+  function instructionPopUp() {
+    alert("Once the category is selected, click on each photo to pass the level.\nBe careful not to click the same photo twice!");
   }
   return (
     <div className='menu'>
@@ -40,26 +40,29 @@ alert("Once the category is selected, click on each photo to pass the level.\nBe
           */
           return (
             <div
-            key={category}
+              key={category}
               className='category'
               onClick={() => {
                 setCategory(category);
                 setShowTab('game');
               }}
-              >
-              
+            >
 
-                <div className='category__background' >
-             
-                </div>
-                <h2>{category}</h2>
+
+              <div className='category__background' >
+
+              </div>
+              <h2>{category}</h2>
             </div>
           );
         })}
       </div>
       <div className='instructions'>
-        <h2 onClick={()=>{instructionPopUp()}}>Instructions</h2>
+        <h2 onClick={() => { instructionPopUp() }}>Instructions</h2>
       </div>
+      <footer>
+        <p>Photos provided by <a href='https://unsplash.com/es' target='_blank'>Unsplash</a></p>
+        </footer>
     </div>
   );
 }
