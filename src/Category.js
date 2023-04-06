@@ -5,7 +5,7 @@ import React from 'react';
 function Category(props) {
   const { setCategory, setShowTab } = props;
 
-  const categories = ['scary', 'graffity'];
+  const categories = ['scary', 'art','animals'];
 
   //use the imported images
   const backgroundImageStyles = {
