@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import VanillaTilt from "vanilla-tilt";
 
 
 function Box(props) {
@@ -10,13 +11,19 @@ function Box(props) {
     setNewVal(val)
   })
 
-  
+    useEffect(() => {
+      VanillaTilt.init(document.querySelectorAll(".box"), {
+        max: 15,
+        speed: 1000
+      });
+    }, []);
   
 
 
   return (
     <div  className='box'  onClick={() => {boxClicked(val);}}>
       {/* <p>{newval}</p> */}
+      
        <img src={val.urls.small}/> 
   
     </div>
