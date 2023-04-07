@@ -15,7 +15,7 @@ function Category(props) {
   };
 
   function instructionPopUp() {
-    alert("Once the category is selected, click on each photo to pass the level.\nBe careful not to click the same photo twice!");
+    alert("Once the category is selected, click on all photos to pass the level.\nBe careful not to click the same photo twice!");
   }
   return (
     <div className='menu'>
