@@ -1,19 +1,19 @@
 .box {
 
-  background: #444;
+  // background: #283c34;
   border-radius: 3px;
   cursor: pointer;
-  border: 1px solid #444;
+  // border: 1px solid #444;
   display: flex;
   justify-content: center;
   position: relative;
   overflow: hidden;
   width: 25%;
   height: 20%;  
-
+  // padding: .3rem;
   border-radius: 3px;
   overflow: hidden;
-
+  box-shadow: 0px 3px 6px #3666;
  animation: atr .5s ease-out;
 
   

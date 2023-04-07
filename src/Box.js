@@ -21,10 +21,10 @@ function Box(props) {
 
 
   return (
-    <div  className='box'  onClick={() => {boxClicked(val);}}>
+    <div  className='box'  onClick={() => {boxClicked(val);}} >
       {/* <p>{newval}</p> */}
       
-       <img src={val.urls.small}/> 
+       <img src={val.urls.small} alt={val.alt_description} /> 
   
     </div>
   )
