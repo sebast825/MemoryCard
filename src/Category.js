@@ -1,6 +1,5 @@
 import React from 'react';
-import graffity from './photos/graffity.jpg';
-import scary from './photos/scary.jpg';
+
 
 function Category(props) {
   const { setCategory, setShowTab } = props;
@@ -8,11 +7,12 @@ function Category(props) {
   const categories = ['scary', 'art', 'animals'];
 
   //use the imported images
-  const backgroundImageStyles = {
-    scary: graffity,
-    art: scary
+  //if you put a photo url here will appear as bg
+  /*const backgroundImageStyles = {
+    scary: "photo",
+    art: "photo"
 
-  };
+  };*/
 
   function instructionPopUp() {
     alert("Once the category is selected, click on all photos to pass the level.\nBe careful not to click the same photo twice!");
@@ -30,9 +30,9 @@ function Category(props) {
         {categories.map((category) => {
 
           //use the imported images
-          const bgPhoto = {
+        /*  const bgPhoto = {
             backgroundImage: backgroundImageStyles[category]
-          }
+          }*/
           /*
           add to category bg to add a bg photo acording to category
                         style={bgPhoto}
