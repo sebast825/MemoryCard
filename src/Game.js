@@ -4,6 +4,7 @@ import './App.scss';
 import { useEffect, useState } from 'react';
 import Box from './Box';
 import Header from './Header';
+import DotLoader from "react-spinners/DotLoader";
 
 const clientId = 'BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ'
 
@@ -13,6 +14,7 @@ function Game(props) {
   const [level, setlevel] = useState(1)
   const [points, setPoints] = useState(0)
   const [seFinish, setSeFinish] = useState(null)
+  const [loading, setLoading] = useState(false)
   // const [maxPoints,setMaxPoints] = useState(0)
   const [img, setImg] = useState({
     1: [],
@@ -21,6 +23,12 @@ function Game(props) {
     4: []
   })
 
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 4000);
+  }, [])
 
   const apiRequest = () => {
     const randomNumber = Math.floor(Math.random() * 80) + 1;
@@ -49,7 +57,7 @@ function Game(props) {
     // console.log(img)
 
   }, [])
-  
+
   useEffect(() => {
     changeLayout();
 
@@ -81,16 +89,16 @@ function Game(props) {
 
     let nextLevel = isNextLevel()
     nextLevel ? setNextLevel() : console.log('no next level');
-/* pasa los niveles con un solo click */
- /*   if (nextLevel || !nextLevel) {
-      setNextLevel();
-    } else {
-      console.log('no next level')
-    };
-*/
+    /* pasa los niveles con un solo click */
+    /*   if (nextLevel || !nextLevel) {
+         setNextLevel();
+       } else {
+         console.log('no next level')
+       };
+   */
   }
 
-  
+
 
   const changeLayout = () => {
     let containerImg = document.querySelector('.App-header');
@@ -178,16 +186,35 @@ function Game(props) {
   }
 
   return (
-    <div className="App ">
-      <Header points={points} goMenu={goMenu} />
+    <div >
+      {
+        loading ?
+          <div className="loading">
 
-      <div className='App-header treePhotos'>
 
-        {img[level].map((elem) => {
-          return <Box val={elem} level={level}  key={+new Date() + elem.id} boxClicked={boxClicked} />
-        })}
-      </div>
+            <DotLoader
+              color={"#fff"}
+              loading={loading}
+              speedMultiplier={1.5}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+            <h2>Loading Level {level}</h2>
 
+          </div>
+          :
+          <div className="App ">
+            <Header points={points} goMenu={goMenu} />
+
+            <div className='App-header treePhotos'>
+
+              {img[level].map((elem) => {
+                return <Box val={elem} level={level} key={+new Date() + elem.id} boxClicked={boxClicked} />
+              })}
+            </div>
+          </div>
+      }
     </div>
   );
 }

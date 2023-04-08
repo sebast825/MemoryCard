@@ -13,8 +13,20 @@ position: relative;
    text-align: center;
    height: 100vh;
   overflow: hidden;
+
 }
 
+.loading{
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: #282c34;
+
+}
 footer{
   position: absolute;
   bottom: 0px;
