@@ -23,19 +23,13 @@ function Game(props) {
     4: []
   })
 
-  useEffect(() => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-    }, 4000);
-  }, [])
 
   const apiRequest = () => {
     const randomNumber = Math.floor(Math.random() * 80) + 1;
-    //  const endPoint = `https://api.unsplash.com/photos/?client_id=${clientId}&per_page=${manyBoxes[level]}&query=mountain&page=${img}`
-    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=${category}&per_page=30&page=${randomNumber}`
-
-    // const endPoint = 'https://api.unsplash.com/search/photos/?client_id=BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ&query=mountains&per_page=10&page=2'
+    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=${category}&per_page=30&page=${randomNumber}`;
+  
+    setLoading(true); // set loading state to true before making the request
+  
     fetch(endPoint)
       .then((response) => response.json())
       .then((jsonData) => {
@@ -44,11 +38,14 @@ function Game(props) {
           2: jsonData.results.slice(3, 9),
           3: jsonData.results.slice(9, 18),
           4: jsonData.results.slice(18)
-        })
-
+        });
+        setLoading(false); // set loading state to false when the response is received
       })
-      .catch((eror) => console.log('error: ', eror))
-  }
+      .catch((error) => {
+        console.log('error: ', error);
+        setLoading(false); // set loading state to false when there is an error
+      });
+  };
 
 
   useEffect(() => {
