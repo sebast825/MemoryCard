@@ -1,25 +1,25 @@
 .box {
 
-  background: #444;
+  // background: #283c34;
   border-radius: 3px;
   cursor: pointer;
-  border: 1px solid #444;
+  // border: 1px solid #444;
   display: flex;
   justify-content: center;
   position: relative;
   overflow: hidden;
   width: 25%;
   height: 20%;  
-
+  // padding: .3rem;
   border-radius: 3px;
   overflow: hidden;
+  // box-shadow: 1px 1px 6px #3666;
+ animation: atr .5s ease-out;
 
- animation: atr .5s ease;
- animation-fill-mode: forwards;
+ box-shadow: 2px 2px 20px rgba(70,70, 70, .5);
 
-  
   &:hover img {
-    transform: scale(1.1);
+    // transform: scale(1.05);
     opacity: .9;
     // object-fit: cover;
   }
@@ -45,8 +45,10 @@
 @keyframes atr{
   from{
     transform: scale(.7);
+     opacity: 0;
   }
   to{
     transform: scale(1);
+    opacity: 1;
   }
 }

@@ -1,10 +1,19 @@
-.menu{
+.menu {
    background-color: #282c34;
    min-height: 100vh;
    display: flex;
-color: #fff;
+   color: #fff;
    flex-direction: column;
+   justify-content: center;
+
+   @media only screen and (min-width : 600px) {
+      gap: 2rem;
+
+   }
+
+
 }
+
 .category {
    width: 20rem;
    height: 20rem;
@@ -15,9 +24,39 @@ color: #fff;
    display: flex;
    justify-content: center;
    align-items: center;
-   @media only screen and (max-width : 900px){
+   border-radius: 3px;
+   border-radius: 50%;
+   background: rgb(2, 0, 36);
+   transform: perspective(1000px) rotateX(20deg);
+ box-shadow: 2px 2px 20px rgba(70,70, 70, .5);
+
+
+   &:first-child {
+      background: rgba(255, 0, 0, 1);
+      background-image: linear-gradient(99deg, rgba(40, 44, 52, 1) -68%, rgba(255, 0, 0, 1) 70%);
+   }
+
+   &:nth-child(2) {
+      background: rgba(164, 46, 253, 1);
+      background-image: linear-gradient(109.6deg, rgba(123, 90, 224, 1) 11.2%, rgba(164, 46, 253, 1) 32.6%, rgba(213, 56, 234, 1) 62.7%, rgba(251, 138, 52, 1) 100.2%);
+   }
+
+   &:last-child {
+      background: rgba(67, 220, 48, 1);
+      background-image: linear-gradient(99deg, rgba(67, 220, 48, 1) 10%, rgba(67, 180, 48, 1) 60%, rgba(40, 44, 52, 1)143.4%);
+   }
+
+   @media only screen and (max-width : 900px) {
       width: 15rem;
-   height: 15rem;
+      height: 15rem;
+   }
+
+   @media only screen and (max-width : 600px) {
+      width: 15rem;
+      height: 7rem;
+      border-radius: 5px;
+      box-shadow: -10px 0px 20px rgba(0, 0, 0, .3);
+
    }
 
    &__background {
@@ -26,12 +65,11 @@ color: #fff;
       position: absolute;
       width: 100%;
       height: 100%;
-      transition: .3s all ease;
+      transition: .3s all ease-in;
 
       &:hover {
 
          transform: scale(1.1);
-         opacity: .6;
       }
    }
 
@@ -42,15 +80,15 @@ color: #fff;
       text-transform: uppercase;
       letter-spacing: 4px;
       transition: .3s all ease-out;
+      text-shadow: 1px 1px 1px #000;
 
    }
 
+   transition: all .2s ease-in;
+
    &:hover {
-      h2 {
-      
-         transform: scale(.95);
-         
-      }
+      transform: scale(1.02);
+      transform: translateZ(-100px);
    }
 }
 
@@ -63,9 +101,21 @@ color: #fff;
 
 .menu__tittle {
    text-align: center;
-   padding: 2rem;
+   // padding: 2rem;
 
    h1 {
       font-size: $font-big;
+   }
+}
+
+.instructions {
+   text-align: center;
+
+   h2 {
+      text-decoration: underline;
+
+      &:hover {
+         cursor: pointer;
+      }
    }
 }

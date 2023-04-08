@@ -4,6 +4,7 @@ import './App.scss';
 import { useEffect, useState } from 'react';
 import Box from './Box';
 import Header from './Header';
+import DotLoader from "react-spinners/DotLoader";
 
 const clientId = 'BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ'
 
@@ -13,6 +14,7 @@ function Game(props) {
   const [level, setlevel] = useState(1)
   const [points, setPoints] = useState(0)
   const [seFinish, setSeFinish] = useState(null)
+  const [loading, setLoading] = useState(false)
   // const [maxPoints,setMaxPoints] = useState(0)
   const [img, setImg] = useState({
     1: [],
@@ -23,30 +25,36 @@ function Game(props) {
 
 
   const apiRequest = () => {
-    //  const endPoint = `https://api.unsplash.com/photos/?client_id=${clientId}&per_page=${manyBoxes[level]}&query=mountain&page=${img}`
-    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=${category}&per_page=30`
-
-    // const endPoint = 'https://api.unsplash.com/search/photos/?client_id=BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ&query=mountains&per_page=10&page=2'
+    const randomNumber = Math.floor(Math.random() * 80) + 1;
+    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=${category}&per_page=30&page=${randomNumber}`;
+  
+    setLoading(true); // set loading state to true before making the request
+  
     fetch(endPoint)
       .then((response) => response.json())
       .then((jsonData) => {
-        console.log(jsonData)
         setImg({
           1: jsonData.results.slice(0, 3),
           2: jsonData.results.slice(3, 9),
           3: jsonData.results.slice(9, 18),
           4: jsonData.results.slice(18)
-        })
+        });
+        setLoading(false); // set loading state to false when the response is received
       })
-      .catch((eror) => console.log('error: ', eror))
-  }
+      .catch((error) => {
+        console.log('error: ', error);
+        setLoading(false); // set loading state to false when there is an error
+      });
+  };
 
 
   useEffect(() => {
     //if select play again doesn't call api again
-    if (img[1] == '') apiRequest()
+    if (img[1] == "") apiRequest()
+    // console.log(img)
 
   }, [])
+
   useEffect(() => {
     changeLayout();
 
@@ -78,16 +86,16 @@ function Game(props) {
 
     let nextLevel = isNextLevel()
     nextLevel ? setNextLevel() : console.log('no next level');
-/* pasa los niveles con un solo click */
- /*   if (nextLevel || !nextLevel) {
-      setNextLevel();
-    } else {
-      console.log('no next level')
-    };
-*/
+    /* pasa los niveles con un solo click */
+    /*   if (nextLevel || !nextLevel) {
+         setNextLevel();
+       } else {
+         console.log('no next level')
+       };
+   */
   }
 
-  
+
 
   const changeLayout = () => {
     let containerImg = document.querySelector('.App-header');
@@ -175,16 +183,35 @@ function Game(props) {
   }
 
   return (
-    <div className="App ">
-      <Header points={points} goMenu={goMenu} />
+    <div >
+      {
+        loading ?
+          <div className="loading">
 
-      <div className='App-header treePhotos'>
 
-        {img[level].map((elem) => {
-          return <Box val={elem} level={level} key={elem.id} boxClicked={boxClicked} />
-        })}
-      </div>
+            <DotLoader
+              color={"#fff"}
+              loading={loading}
+              speedMultiplier={1.5}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+            <h2>Loading Level {level}</h2>
 
+          </div>
+          :
+          <div className="App ">
+            <Header points={points} goMenu={goMenu} />
+
+            <div className='App-header treePhotos'>
+
+              {img[level].map((elem) => {
+                return <Box val={elem} level={level} key={+new Date() + elem.id} boxClicked={boxClicked} />
+              })}
+            </div>
+          </div>
+      }
     </div>
   );
 }

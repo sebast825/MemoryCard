@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from 'react'
+import VanillaTilt from "vanilla-tilt";
 
 
 function Box(props) {
 
   const {val ,level,boxClicked} = props;
-  const [background, setBackground] = useState('white');
 
   const [newval, setNewVal] = useState(val)
   useEffect(() => {
     setNewVal(val)
   })
 
+    useEffect(() => {
+      VanillaTilt.init(document.querySelectorAll(".box"), {
+        max: 15,
+        speed: 1000
+      });
+    }, []);
   
-  
-  const updateBG = () => {
-    setBackground('red')
-  }
+
 
   return (
-    <div  className='box' style={{ backgroundColor: background }} onClick={() => {boxClicked(val);}}>
+    <div  className='box'  onClick={() => {boxClicked(val);}} >
       {/* <p>{newval}</p> */}
-       <img src={val.urls.small}/> 
+      
+       <img src={val.urls.small} alt={val.alt_description} /> 
   
     </div>
   )

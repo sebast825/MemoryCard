@@ -1,24 +1,26 @@
 import React from 'react';
-// import graffity from './photos/graffity.jpg';
-// import scary from './photos/scary.jpg';
+
 
 function Category(props) {
   const { setCategory, setShowTab } = props;
 
-  const categories = ['scary', 'graffity'];
+  const categories = ['scary', 'art', 'animals'];
 
   //use the imported images
-  const backgroundImageStyles = {
-    scary: "url(https://sebast825.github.io/MemoryCard/static/media/scary.8a90f4857dd549d378ad.jpg)",
-    graffity: `url(https://sebast825.github.io/MemoryCard/static/media/graffity.fab23d15fdd79c353ff3.jpg)`
+  //if you put a photo url here will appear as bg
+  /*const backgroundImageStyles = {
+    scary: "photo",
+    art: "photo"
 
-  };
+  };*/
 
+  function instructionPopUp() {
+    alert("Once the category is selected, click on all photos to pass the level.\nBe careful not to click the same photo twice!");
+  }
   return (
     <div className='menu'>
       <div className='menu__tittle'>
         <h1>Memory Card</h1>
-        <p>Click only one time each photo</p>
         <h4>Select Category</h4>
 
       </div>
@@ -28,30 +30,39 @@ function Category(props) {
         {categories.map((category) => {
 
           //use the imported images
-          const bgPhoto = {
+        /*  const bgPhoto = {
             backgroundImage: backgroundImageStyles[category]
-          }
+          }*/
+          /*
+          add to category bg to add a bg photo acording to category
+                        style={bgPhoto}
+
+          */
           return (
             <div
-            key={category}
+              key={category}
               className='category'
               onClick={() => {
                 setCategory(category);
                 setShowTab('game');
               }}
-              >
-                    
-                <div className='category__background'style={bgPhoto}>
-             
-                </div>
-                <h2>{category}</h2>
+            >
+
+
+              <div className='category__background' >
+
+              </div>
+              <h2>{category}</h2>
             </div>
           );
         })}
       </div>
-      <div className='Instructions'>
-        
+      <div className='instructions'>
+        <h2 onClick={() => { instructionPopUp() }}>Instructions</h2>
       </div>
+      <footer>
+        <p>Photos provided by <a href='https://unsplash.com/es' target='_blank'>Unsplash</a></p>
+        </footer>
     </div>
   );
 }
