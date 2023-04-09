@@ -29,9 +29,9 @@ function Game(props) {
     setTimeout(() => {
       setLoading(false); 
     }, 500);
-
   
   },[level])
+
   useEffect(()=>{
     if(!loading)  changeLayout()
 
