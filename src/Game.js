@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import { useEffect, useState } from 'react';
 import Box from './Box';
@@ -15,7 +14,6 @@ function Game(props) {
   const [points, setPoints] = useState(0)
   const [seFinish, setSeFinish] = useState(null)
   const [loading, setLoading] = useState(false)
-  // const [maxPoints,setMaxPoints] = useState(0)
   const [img, setImg] = useState({
     1: [],
     2: [],
@@ -77,7 +75,6 @@ function Game(props) {
       setPreviousGame([false, points])
       resetStats()
       setShowTab('endGame')
-
 
     }
   }, [seFinish])
@@ -188,6 +185,7 @@ function Game(props) {
               aria-label="Loading Spinner"
               data-testid="loader"
             />
+            <h2>Level {level}</h2>
             <h2>Level {level}</h2>
 
           </div>
