@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import { useEffect, useState } from 'react';
 import Box from './Box';
@@ -15,7 +14,6 @@ function Game(props) {
   const [points, setPoints] = useState(0)
   const [seFinish, setSeFinish] = useState(null)
   const [loading, setLoading] = useState(false)
-  // const [maxPoints,setMaxPoints] = useState(0)
   const [img, setImg] = useState({
     1: [],
     2: [],
@@ -23,12 +21,16 @@ function Game(props) {
     4: []
   })
 
+  useEffect(()=>{
+    setLoading(true); // set loading state to true before making the request
+    setTimeout(() => {
+      setLoading(false)
+    }, 500);
+  },[level])
 
   const apiRequest = () => {
     const randomNumber = Math.floor(Math.random() * 80) + 1;
     const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=${category}&per_page=30&page=${randomNumber}`;
-  
-    setLoading(true); // set loading state to true before making the request
   
     fetch(endPoint)
       .then((response) => response.json())
@@ -39,7 +41,6 @@ function Game(props) {
           3: jsonData.results.slice(9, 18),
           4: jsonData.results.slice(18)
         });
-        setLoading(false); // set loading state to false when the response is received
       })
       .catch((error) => {
         console.log('error: ', error);
@@ -49,9 +50,7 @@ function Game(props) {
 
 
   useEffect(() => {
-    //if select play again doesn't call api again
     if (img[1] == "") apiRequest()
-    // console.log(img)
 
   }, [])
 
@@ -75,7 +74,6 @@ function Game(props) {
       resetStats()
       setShowTab('endGame')
 
-
     }
   }, [seFinish])
 
@@ -94,8 +92,6 @@ function Game(props) {
        };
    */
   }
-
-
 
   const changeLayout = () => {
     let containerImg = document.querySelector('.App-header');
@@ -139,12 +135,6 @@ function Game(props) {
     setPoints(points + 1)
   }
 
-  /*
-  const isMaxPoint = () => {
-    if (points > maxPoints){
-      setMaxPoints(points)
-    }
-  }*/
   const wasLastLevel = () => {
     return level == Object.keys(img).length
   }
@@ -186,8 +176,7 @@ function Game(props) {
     <div >
       {
         loading ?
-          <div className="loading">
-
+          <div className="loading" onClick={()=>{setLoading(false)}}>
 
             <DotLoader
               color={"#fff"}
@@ -197,7 +186,7 @@ function Game(props) {
               aria-label="Loading Spinner"
               data-testid="loader"
             />
-            <h2>Loading Level {level}</h2>
+            <h2>Level {level}</h2>
 
           </div>
           :
@@ -218,8 +207,3 @@ function Game(props) {
 
 export default Game;
 
-
-
-//si esta sin nada actualiza la 1ra vez que hay un cambio, y si hay
-//si tiene corchete vacio solo actualiza cuando renderiza
-//si le pasas parametro actualiza con parametro
