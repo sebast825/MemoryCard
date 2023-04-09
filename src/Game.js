@@ -186,7 +186,6 @@ function Game(props) {
               data-testid="loader"
             />
             <h2>Level {level}</h2>
-            <h2>Level {level}</h2>
 
           </div>
           :
