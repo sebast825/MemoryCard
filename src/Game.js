@@ -24,12 +24,23 @@ function Game(props) {
   })
 
 
+  useEffect(()=>{
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false); 
+    }, 500);
+
+  
+  },[level])
+  useEffect(()=>{
+    if(!loading)  changeLayout()
+
+  },[loading])
+
   const apiRequest = () => {
     const randomNumber = Math.floor(Math.random() * 80) + 1;
     const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=${category}&per_page=30&page=${randomNumber}`;
-  
-    setLoading(true); // set loading state to true before making the request
-  
+
     fetch(endPoint)
       .then((response) => response.json())
       .then((jsonData) => {
@@ -39,27 +50,19 @@ function Game(props) {
           3: jsonData.results.slice(9, 18),
           4: jsonData.results.slice(18)
         });
-        setLoading(false); // set loading state to false when the response is received
       })
       .catch((error) => {
         console.log('error: ', error);
-        setLoading(false); // set loading state to false when there is an error
       });
   };
 
 
   useEffect(() => {
-    //if select play again doesn't call api again
     if (img[1] == "") apiRequest()
-    // console.log(img)
 
   }, [])
 
-  useEffect(() => {
-    changeLayout();
 
-
-  }, [level])
   useEffect(() => {
 
     if (seFinish) {
@@ -95,12 +98,10 @@ function Game(props) {
    */
   }
 
-
-
   const changeLayout = () => {
     let containerImg = document.querySelector('.App-header');
     var childCount = containerImg.children.length;
-
+    
     containerImg.classList.remove('ninePhotos');
     containerImg.classList.remove('treePhotos');
     containerImg.classList.remove('sixPhotos');
@@ -110,15 +111,13 @@ function Game(props) {
       containerImg.classList.add('treePhotos');
     } else if (childCount > 3 && childCount <= 6) {
       containerImg.classList.add('sixPhotos');
-
+      console.log('arg')
     }
     else if (childCount > 6 && childCount <= 9) {
       containerImg.classList.add('ninePhotos');
-
     }
     else if (childCount > 9) {
       containerImg.classList.add('tewelvePhotos');
-
     }
     else {
       console.log('error')
@@ -139,12 +138,6 @@ function Game(props) {
     setPoints(points + 1)
   }
 
-  /*
-  const isMaxPoint = () => {
-    if (points > maxPoints){
-      setMaxPoints(points)
-    }
-  }*/
   const wasLastLevel = () => {
     return level == Object.keys(img).length
   }
@@ -174,7 +167,6 @@ function Game(props) {
     if (lastLevel) return setSeFinish(true)
     setlevel(level + 1)
     setNumberClicked([])
-
   }
 
   const imgSort = () => {
@@ -188,7 +180,6 @@ function Game(props) {
         loading ?
           <div className="loading">
 
-
             <DotLoader
               color={"#fff"}
               loading={loading}
@@ -197,14 +188,14 @@ function Game(props) {
               aria-label="Loading Spinner"
               data-testid="loader"
             />
-            <h2>Loading Level {level}</h2>
+            <h2>Level {level}</h2>
 
           </div>
           :
           <div className="App ">
             <Header points={points} goMenu={goMenu} />
 
-            <div className='App-header treePhotos'>
+            <div className='App-header treePhotos' onUpdate={changeLayout} >
 
               {img[level].map((elem) => {
                 return <Box val={elem} level={level} key={+new Date() + elem.id} boxClicked={boxClicked} />
@@ -217,9 +208,3 @@ function Game(props) {
 }
 
 export default Game;
-
-
-
-//si esta sin nada actualiza la 1ra vez que hay un cambio, y si hay
-//si tiene corchete vacio solo actualiza cuando renderiza
-//si le pasas parametro actualiza con parametro
