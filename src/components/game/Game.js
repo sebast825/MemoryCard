@@ -126,9 +126,10 @@ function Game(props) {
     setNumberClicked([])
   }
 
+
   const imgSort = () => {
     //don't need to use setImg because useState allow re order but not modify element
-    const newData = img[level].sort(() => Math.random() - 1)
+    img[level].sort(() => Math.random() - 0.5)
   }
 
   return (
