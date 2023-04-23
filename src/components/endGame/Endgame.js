@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import './endGame.scss';
 
 function Endgame(props) {
    const { previousGame, setShowTab } = props
@@ -16,7 +17,7 @@ function Endgame(props) {
          </div>
          <div className='buttonContainer'>
          <a className='button button--light' onClick={() => { setShowTab('game') }}>Play Again</a>
-
+            
             <a className='button button--dark' onClick={() => { setShowTab('category') }}>Menu</a>
          </div>
 

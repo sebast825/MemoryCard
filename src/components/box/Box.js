@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import VanillaTilt from "vanilla-tilt";
-
+import './box.scss'
 
 function Box(props) {
 

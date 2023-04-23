@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import './App.scss';
+
 import Game from './Game'
-import Category from './Category'
-import Endgame from './Endgame'
+import Category from './components/category/Category'
+import Endgame from './components/endGame/Endgame'
 function App() {
 
    const [category, setCategory] = useState()
