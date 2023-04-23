@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './endGame.scss';
-
+import Button from '../button/Button'
 function Endgame(props) {
    const { previousGame, setShowTab } = props
    const [win, points] = previousGame
@@ -16,9 +16,12 @@ function Endgame(props) {
 
          </div>
          <div className='buttonContainer'>
-         <a className='button button--light' onClick={() => { setShowTab('game') }}>Play Again</a>
+            <Button clas='button button--light' setShowTab={setShowTab} view='game' text="Play Again"/>
+            <Button clas='button button--dark' setShowTab={setShowTab} view='category' text="Menu"/>
+
+         {/* <a className='button button--light' onClick={() => { setShowTab('game') }}>Play Again</a>
             
-            <a className='button button--dark' onClick={() => { setShowTab('category') }}>Menu</a>
+            <a className='button button--dark' onClick={() => { setShowTab('category') }}>Menu</a> */}
          </div>
 
 
