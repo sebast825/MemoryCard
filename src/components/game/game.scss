@@ -1,8 +1,26 @@
 @import '../../App.scss';
 
-.App-header {
+.loading {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
   background-color: #282c34;
-  //  min-height: 100vh;
+
+}
+
+.game {
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+
+}
+
+.gamePhotos {
+  background-color: #282c34;
   height: calc(100% - 70px);
   display: flex;
   flex-direction: row;
@@ -23,9 +41,9 @@
 }
 
 .treePhotos {
-  // flex-direction: column!important;
 
   gap: 1rem;
+
   & div {
     width: 20%;
     height: 40%;
@@ -87,9 +105,7 @@
       width: 30%;
 
     }
-
   }
-
 }
 
 .tewelvePhotos {
@@ -102,5 +118,4 @@
       height: 20%;
     }
   }
-
 }

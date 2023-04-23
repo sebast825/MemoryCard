@@ -96,7 +96,7 @@ function Game(props) {
   }
 
   const changeLayout = () => {
-    let containerImg = document.querySelector('.App-header');
+    let containerImg = document.querySelector('.gamePhotos');
     var childCount = containerImg.children.length;
     
     containerImg.classList.remove('ninePhotos');
@@ -189,10 +189,10 @@ function Game(props) {
 
           </div>
           :
-          <div className="App ">
+          <div className="game">
             <Header points={points} goMenu={goMenu} />
 
-            <div className='App-header treePhotos' onUpdate={changeLayout} >
+            <div className='gamePhotos treePhotos' onUpdate={changeLayout} >
 
               {img[level].map((elem) => {
                 return <Box val={elem} level={level} key={+new Date() + elem.id} boxClicked={boxClicked} />

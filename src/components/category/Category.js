@@ -1,6 +1,6 @@
 import React from 'react';
 import './category.scss';
-
+import Footer from '../footer/footer';
 
 function Category(props) {
   const { setCategory, setShowTab } = props;
@@ -40,12 +40,11 @@ function Category(props) {
           );
         })}
       </div>
+      <Footer/>
       <div className='instructions'>
         <h2 onClick={() => { instructionPopUp() }}>Instructions</h2>
       </div>
-      <footer>
-        <p>Photos provided by <a href='https://unsplash.com/es' target='_blank'>Unsplash</a></p>
-        </footer>
+    
     </div>
   );
 }
