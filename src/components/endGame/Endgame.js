@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react';
 import './endGame.scss';
-import Button from '../button/Button'
+import Button from '../button/Button';
+
 function Endgame(props) {
-   const { previousGame, setShowTab } = props
-   const [win, points] = previousGame
-   useEffect(() => {
-      // console.log(previousGame)
-      // console.log(win, points)
-   }, [])
+   const { previousGame, setShowTab } = props;
+   const [win, points] = previousGame;
+
    return (
       <div className='endGame'>
          <div className='endGame__text'>
@@ -19,9 +17,6 @@ function Endgame(props) {
             <Button clas='button button--light' setShowTab={setShowTab} view='game' text="Play Again"/>
             <Button clas='button button--dark' setShowTab={setShowTab} view='category' text="Menu"/>
 
-         {/* <a className='button button--light' onClick={() => { setShowTab('game') }}>Play Again</a>
-            
-            <a className='button button--dark' onClick={() => { setShowTab('category') }}>Menu</a> */}
          </div>
 
 

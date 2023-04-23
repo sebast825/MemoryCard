@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.scss';
+import './game.scss';
 import { useEffect, useState } from 'react';
-import Box from './components/box/Box';
-import Header from './components/header/Header';
+import Box from '../box/Box';
+import Header from '../header/Header';
 import DotLoader from "react-spinners/DotLoader";
 
 const clientId = 'BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ'
