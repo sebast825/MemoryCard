@@ -26,7 +26,7 @@ function Game(props) {
     if (img[1] == "") apiRequest(category,setImg)
 
   }, [])
-  
+
   useEffect(()=>{
     setLoading(true);
     setTimeout(() => {
@@ -57,13 +57,8 @@ function Game(props) {
     imgSort()
     let imgClicked = wasImageClicked(e.id);
     if (imgClicked != undefined) { setSeFinish(false); return } else addImageClicked(e.id);
-
     let nextLevel = isNextLevel()
     if (nextLevel) setNextLevel();
-    /* pasa los niveles con un solo click */
-    /*   if (nextLevel || !nextLevel) {
-         setNextLevel();
-       }*/
    
   }
 
