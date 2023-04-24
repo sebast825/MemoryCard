@@ -22,7 +22,11 @@ function Game(props) {
     4: []
   })
 
+  useEffect(() => {
+    if (img[1] == "") apiRequest(category,setImg)
 
+  }, [])
+  
   useEffect(()=>{
     setLoading(true);
     setTimeout(() => {
@@ -36,30 +40,16 @@ function Game(props) {
 
   },[loading])
 
-  
-
-
-  useEffect(() => {
-    if (img[1] == "") apiRequest(category,setImg)
-
-  }, [])
-
 
   useEffect(() => {
 
     if (seFinish) {
-      console.log('sefinish')
       setPreviousGame([true, points])
       setShowTab('endGame')
-      resetStats()
-
     }
     else if (seFinish === false) {
-      console.log('sigue', seFinish)
       setPreviousGame([false, points])
-      resetStats()
       setShowTab('endGame')
-
     }
   }, [seFinish])
 
@@ -69,17 +59,13 @@ function Game(props) {
     if (imgClicked != undefined) { setSeFinish(false); return } else addImageClicked(e.id);
 
     let nextLevel = isNextLevel()
-    nextLevel ? setNextLevel() : console.log('no next level');
+    if (nextLevel) setNextLevel();
     /* pasa los niveles con un solo click */
     /*   if (nextLevel || !nextLevel) {
          setNextLevel();
-       } else {
-         console.log('no next level')
-       };
-   */
+       }*/
+   
   }
-
- 
 
   const wasImageClicked = (number) => {
     const alreadyClicked = numberClicked.find(elem => elem == number);
@@ -99,17 +85,12 @@ function Game(props) {
     return level == Object.keys(img).length
   }
 
-
-  const resetStats = () => {
-    setlevel(1)
-    setNumberClicked([])
-    setPoints(0)
-  }
   const goMenu = () => {
-    resetStats()
+    // resetStats()
     setShowTab('category')
 
   }
+
   const isNextLevel = () => {
     const valueLength = img[level].length;
     // is +1 because the updated value reflect after, and if use useffect, will render 1 time before and will activate setNextLevel
@@ -120,12 +101,10 @@ function Game(props) {
 
   const setNextLevel = () => {
     let lastLevel = wasLastLevel();
-    console.log(lastLevel)
     if (lastLevel) return setSeFinish(true)
     setlevel(level + 1)
     setNumberClicked([])
   }
-
 
   const imgSort = () => {
     //don't need to use setImg because useState allow re order but not modify element

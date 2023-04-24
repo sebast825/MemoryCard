@@ -4,12 +4,10 @@ import './box.scss'
 
 function Box(props) {
 
-  const {val ,level,boxClicked} = props;
+  const {val,boxClicked} = props;
 
   const [newval, setNewVal] = useState(val)
-  useEffect(() => {
-    setNewVal(val)
-  })
+ 
 
     useEffect(() => {
       VanillaTilt.init(document.querySelectorAll(".box"), {
@@ -32,13 +30,3 @@ function Box(props) {
 
 export default Box
 
-
-
-/*
-const agregarDato = () => {
-  // console.log(value.target.id)
-  setNewVal(val + 1)
-  console.log(val, newval)
-
-  // setValue([...val,value.target.id])
-}*/
