@@ -1,11 +1,12 @@
 import React from 'react';
-import './App.scss';
+import './game.scss';
 import { useEffect, useState } from 'react';
-import Box from './Box';
-import Header from './Header';
+import Box from '../box/Box';
+import Header from '../header/Header';
 import DotLoader from "react-spinners/DotLoader";
+import {apiRequest} from '../../utils/api';
+import {changeLayout} from '../../utils/changeLayout';
 
-const clientId = 'BTtUfQ1wl6hb1I3inmzidGfF0qFLvvN71JApPdcu1EQ'
 
 function Game(props) {
   const { category, setPreviousGame, setShowTab } = props
@@ -21,7 +22,11 @@ function Game(props) {
     4: []
   })
 
+  useEffect(() => {
+    if (img[1] == "") apiRequest(category,setImg)
 
+  }, [])
+  
   useEffect(()=>{
     setLoading(true);
     setTimeout(() => {
@@ -35,47 +40,16 @@ function Game(props) {
 
   },[loading])
 
-  const apiRequest = () => {
-    const randomNumber = Math.floor(Math.random() * 80) + 1;
-    const endPoint = `https://api.unsplash.com/search/photos/?client_id=${clientId}&query=${category}&per_page=30&page=${randomNumber}`;
-
-    fetch(endPoint)
-      .then((response) => response.json())
-      .then((jsonData) => {
-        setImg({
-          1: jsonData.results.slice(0, 3),
-          2: jsonData.results.slice(3, 9),
-          3: jsonData.results.slice(9, 18),
-          4: jsonData.results.slice(18)
-        });
-      })
-      .catch((error) => {
-        console.log('error: ', error);
-      });
-  };
-
-
-  useEffect(() => {
-    if (img[1] == "") apiRequest()
-
-  }, [])
-
 
   useEffect(() => {
 
     if (seFinish) {
-      console.log('sefinish')
       setPreviousGame([true, points])
       setShowTab('endGame')
-      resetStats()
-
     }
     else if (seFinish === false) {
-      console.log('sigue', seFinish)
       setPreviousGame([false, points])
-      resetStats()
       setShowTab('endGame')
-
     }
   }, [seFinish])
 
@@ -85,40 +59,12 @@ function Game(props) {
     if (imgClicked != undefined) { setSeFinish(false); return } else addImageClicked(e.id);
 
     let nextLevel = isNextLevel()
-    nextLevel ? setNextLevel() : console.log('no next level');
+    if (nextLevel) setNextLevel();
     /* pasa los niveles con un solo click */
     /*   if (nextLevel || !nextLevel) {
          setNextLevel();
-       } else {
-         console.log('no next level')
-       };
-   */
-  }
-
-  const changeLayout = () => {
-    let containerImg = document.querySelector('.App-header');
-    var childCount = containerImg.children.length;
-    
-    containerImg.classList.remove('ninePhotos');
-    containerImg.classList.remove('treePhotos');
-    containerImg.classList.remove('sixPhotos');
-    containerImg.classList.remove('tewelvePhotos');
-
-    if (childCount <= 3) {
-      containerImg.classList.add('treePhotos');
-    } else if (childCount > 3 && childCount <= 6) {
-      containerImg.classList.add('sixPhotos');
-      console.log('arg')
-    }
-    else if (childCount > 6 && childCount <= 9) {
-      containerImg.classList.add('ninePhotos');
-    }
-    else if (childCount > 9) {
-      containerImg.classList.add('tewelvePhotos');
-    }
-    else {
-      console.log('error')
-    }
+       }*/
+   
   }
 
   const wasImageClicked = (number) => {
@@ -139,17 +85,12 @@ function Game(props) {
     return level == Object.keys(img).length
   }
 
-
-  const resetStats = () => {
-    setlevel(1)
-    setNumberClicked([])
-    setPoints(0)
-  }
   const goMenu = () => {
-    resetStats()
+    // resetStats()
     setShowTab('category')
 
   }
+
   const isNextLevel = () => {
     const valueLength = img[level].length;
     // is +1 because the updated value reflect after, and if use useffect, will render 1 time before and will activate setNextLevel
@@ -160,7 +101,6 @@ function Game(props) {
 
   const setNextLevel = () => {
     let lastLevel = wasLastLevel();
-    console.log(lastLevel)
     if (lastLevel) return setSeFinish(true)
     setlevel(level + 1)
     setNumberClicked([])
@@ -168,7 +108,7 @@ function Game(props) {
 
   const imgSort = () => {
     //don't need to use setImg because useState allow re order but not modify element
-    const newData = img[level].sort(() => Math.random() - 1)
+    img[level].sort(() => Math.random() - 0.5)
   }
 
   return (
@@ -189,10 +129,10 @@ function Game(props) {
 
           </div>
           :
-          <div className="App ">
+          <div className="game">
             <Header points={points} goMenu={goMenu} />
 
-            <div className='App-header treePhotos' onUpdate={changeLayout} >
+            <div className='gamePhotos treePhotos' onUpdate={changeLayout} >
 
               {img[level].map((elem) => {
                 return <Box val={elem} level={level} key={+new Date() + elem.id} boxClicked={boxClicked} />
